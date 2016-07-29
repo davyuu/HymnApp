@@ -11,20 +11,27 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
         <EditText
             android:id="@+id/search_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:gravity="center_vertical"
             android:hint="Search"
-            android:drawableLeft="@drawable/ic_action_search"/>
+            android:drawableLeft="@drawable/ic_action_search">
+        </EditText>
         <ImageButton
             android:id="@+id/search_remove_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="right|center_vertical"
             android:layout_margin="8dp"
             android:src="@drawable/ic_action_remove"
@@ -34,14 +41,18 @@
             android:id="@+id/search_voice_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="right|center_vertical"
             android:layout_margin="8dp"
             android:src="@drawable/ic_action_microphone"
             android:background="@null"/>
-    </FrameLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/item_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:fastScrollEnabled="true"
+        android:fastScrollAlwaysVisible="true"/>
 </LinearLayout>
