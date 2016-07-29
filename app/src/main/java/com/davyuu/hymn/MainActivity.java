@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter arrayAdapter;
 
     private List<String> itemList;
-    private Map<String, Integer> itemNumberMap;
+    private Map<Integer, String> itemNumberMap;
     private Map<String, Integer> imageIdMap;
 
     @Override
@@ -139,14 +139,16 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> formatDisplayValue(String searchText){
         List<String> displayList = new ArrayList<>();
-        for(String name : itemList){
+        //for(int i = 1; i <= itemList.size(); i++){
+        for(Map.Entry<Integer, String> entry : itemNumberMap.entrySet()){
+            String number = entry.getKey().toString();
+            String name = entry.getValue();
             if(searchText.isEmpty() || searchText == "") {
-                displayList.add(itemNumberMap.get(name) + ". " + name);
+                displayList.add(number + ". " + name);
             }
             else{
-                if ((itemNumberMap.get(name).toString()).contains(searchText) ||
-                        name.contains(searchText)) {
-                    displayList.add(itemNumberMap.get(name) + ". " + name);
+                if (number.contains(searchText) || name.contains(searchText)) {
+                    displayList.add(number + ". " + name);
                 }
             }
         }

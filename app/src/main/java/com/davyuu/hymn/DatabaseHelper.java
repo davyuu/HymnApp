@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -109,20 +110,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public Map<String, Integer> getAllNumbers(){
+    public Map<Integer, String> getAllNumbers(){
         Cursor cursor = getAllData();
-        Map<String, Integer> numberMap = new HashMap<>();
+        Map<Integer, String> numberMap = new TreeMap<>();
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            int nameIndex = cursor.getColumnIndex(COL_NAME);
             int numberIndex = cursor.getColumnIndex(COL_NUMBER);
+            int nameIndex = cursor.getColumnIndex(COL_NAME);
             if(nameIndex == -1 || numberIndex == -1){
                 return numberMap;
             }
-            String name = cursor.getString(nameIndex);
             int number = cursor.getInt(numberIndex);
-            numberMap.put(name, number);
+            String name = cursor.getString(nameIndex);
+            numberMap.put(number, name);
             cursor.moveToNext();
         }
 
